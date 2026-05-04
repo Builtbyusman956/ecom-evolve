@@ -1,6 +1,7 @@
 import Hero     from '../components/home/Hero'
 import TrustBar from '../components/home/TrustBar'
 import FAQ      from '../components/home/FAQ'
+import VideoReviews from '../components/home/VideoReviews'
 
 // Coming next:
 // import Services   from '../components/home/Services'
@@ -16,7 +17,7 @@ export default function Home() {
       <TrustBar />
       {/* <Services /> */}
       {/* <Packages /> */}
-      {/* <VideoReviews /> */}
+      <VideoReviews />
       {/* <Portfolio /> */}
       <FAQ />
       {/* <BookingCTA /> */}
