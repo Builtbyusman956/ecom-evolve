@@ -1,13 +1,13 @@
 // ── Services page ──────────────────────────────────────────
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { TbStore, TbSearch, TbSpeakerphone, TbPalette, TbChartLine, TbAdjustments } from 'react-icons/tb'
+import {TbSearch, TbSpeakerphone, TbPalette, TbChartLine, TbAdjustments } from 'react-icons/tb'
 import { HiArrowRight } from 'react-icons/hi'
 
 const up = (d=0) => ({ hidden:{opacity:0,y:24}, show:{opacity:1,y:0,transition:{duration:0.65,delay:d,ease:[0.22,1,0.36,1]}} })
 
 const SVCS = [
-  { icon:TbStore,        title:'Store Setup',        desc:'End-to-end Shopify build — theme, pages, checkout — engineered to convert from day one.' },
+ 
   { icon:TbSearch,       title:'Product Research',   desc:'Data-driven product discovery. We find winning products before you spend on inventory.' },
   { icon:TbSpeakerphone, title:'Paid Advertising',   desc:'Meta & TikTok campaigns built for profitable ROAS, not just clicks or vanity metrics.' },
   { icon:TbPalette,      title:'Brand Identity',     desc:'Logo, colors, tone of voice — positioning that builds instant trust in any market.' },
