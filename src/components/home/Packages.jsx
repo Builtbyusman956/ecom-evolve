@@ -5,9 +5,9 @@ import {
   TbCheck, TbX, TbArrowUpRight, TbLock, TbShieldCheck,
   TbClock, TbCalendar, TbStar, TbX as TbClose,
 } from 'react-icons/tb'
-import { packages } from '../../data/package'
+import { packages } from '../../data/packages'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:9090').trim().replace(/\/+$/, '')
 
 /* ── helpers ─────────────────────────────────────────────── */
 const up = (d = 0) => ({
