@@ -1,34 +1,42 @@
 /**
- * Central API configuration.
- * Import API_URL from here — never construct it inline.
+ * EcomEvolve — API base URL
+ *
+ * Rules for VITE_API_URL in your .env / Vercel dashboard:
+ *   VITE_API_URL=https://ecom-evolve-production.up.railway.app
+ *
+ *   No trailing slash
+ *   No spaces
+ *   Must include https://
  */
 
-const raw = import.meta.env.VITE_API_URL ?? ''
+function resolveApiUrl() {
+  const env = import.meta.env.VITE_API_URL
 
-// Strip whitespace and trailing slashes
-const cleaned = raw.trim().replace(/\/+$/, '')
-
-// If the env var is missing or looks wrong, fall back to localhost
-function buildApiUrl(url) {
-  if (!url) return 'http://localhost:9090'
-
-  // Must start with http:// or https://
-  if (!url.startsWith('http://') && !url.startsWith('https://')) {
-    console.warn(
-      '[EcomEvolve] VITE_API_URL does not start with http:// or https://\n' +
-      `  Got: "${url}"\n` +
-      '  Falling back to http://localhost:9090\n' +
-      '  Fix: set VITE_API_URL=https://your-backend.railway.app in your .env file'
-    )
+  // Not set at all
+  if (!env || typeof env !== 'string') {
+    console.warn('[API] VITE_API_URL is not set. Using http://localhost:9090')
     return 'http://localhost:9090'
+  }
+
+  // Clean it
+  const url = env.trim().replace(/\/+$/, '')
+
+  // Missing protocol — most common mistake
+  if (!url.startsWith('http://') && !url.startsWith('https://')) {
+    console.error(
+      `[API] VITE_API_URL is missing the protocol.\n` +
+      `  Got:      "${url}"\n` +
+      `  Expected: "https://${url}"\n` +
+      `  Fix your .env or Vercel env var.`
+    )
+    // Auto-fix it rather than breaking the app
+    return `https://${url}`
   }
 
   return url
 }
 
-export const API_URL = buildApiUrl(cleaned)
+export const API_URL = resolveApiUrl()
 
-// Log in dev so it's easy to confirm
-if (import.meta.env.DEV) {
-  console.log(`[EcomEvolve] API_URL = ${API_URL}`)
-}
+// Always log so it's visible in browser DevTools console
+console.log(`[EcomEvolve] API →`, API_URL)
