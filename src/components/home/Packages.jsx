@@ -7,7 +7,7 @@ import {
 } from 'react-icons/tb'
 import { packages } from '../../data/packages'
 
-const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:9090').trim().replace(/\/+$/, '')
+import { API_URL } from '../../lib/api'
 
 /* ── helpers ─────────────────────────────────────────────── */
 const up = (d = 0) => ({
